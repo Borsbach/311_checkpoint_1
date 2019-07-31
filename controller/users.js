@@ -1,34 +1,39 @@
-const users = require('../data/users')
+const users = require("../data/users");
+const sampleUser = require("../data/sampleUser");
+
 
 const list = (req, res) => {
-  res.json(users
-  )
-}
+  res.json(users);
+};
 
 const show = (req, res) => {
   const user = users.find(function(item) {
-    return item._id == req.params.id
-  })
-  res.json(user)
-}
+    return item.id == req.params.id;
+  });
+  res.json(user);
+};
 
 const create = (req, res) => {
-  const newUser = {
-    _id: users.length +1,
-    body: req.body.body
-  }
-  users
-.push(newUser)
-}
+  let lastId = users[users.length-1].id;
+  sampleUser.id = lastId +1;
+  users.push(sampleUser);
+};
 
 const put = (req, res) => {
-  const updateUser = {
-    id: req.body._id,
-    name: req.body.name,
-    occupation: req.body.occupation,
-    avatar: req.body.avatar
-  };
-  users.push(updateUser);
+  // const updateUser = {
+  //   id: req.body._id,
+  //   name: req.body.name,
+  //   occupation: req.body.occupation,
+  //   avatar: req.body.avatar
+  // };
+  const user = users.find(function(item) {
+    return item.id == req.params.id;
+  });
+  console.log(user)
+  let index = users.indexOf(user);
+  console.log(index)
+  console.log(users[index])
+  users[index] = sampleUser;
   res.json(users);
 };
 
@@ -45,5 +50,9 @@ const removed = (req, res) => {
 };
 
 module.exports = {
-  list, show, create, put, removed
-}
+  list,
+  show,
+  create,
+  put,
+  removed
+};

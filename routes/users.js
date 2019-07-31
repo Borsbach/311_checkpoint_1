@@ -2,11 +2,11 @@ const express = require('express')
 const router = express.Router()
 const usersController = require('../controller/users')
 
-router.get('/users', ContactsController.list)
-router.get('/users/:id', ContactsController.show)
-router.post('/users', ContactsController.create)
-router.put('/users', ContactsController.put)
-router.delete('/users', ContactsController.removed)
+router.get('/users', usersController.list)
+router.get('/users/:id', usersController.show)
+router.post('/users', usersController.create)
+router.put('/users/:id', usersController.put)
+router.delete('/users', usersController.removed)
 
 
 module.exports = router
