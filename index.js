@@ -9,7 +9,6 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(usersRoutes);
 
-// app.get('/', (req, res) => res.send('default route'))
 
 app.listen(port, () => {
   console.log('app is listening on:', port)
